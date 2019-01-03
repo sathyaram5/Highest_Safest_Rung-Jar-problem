@@ -8,7 +8,8 @@
   we have only one jar left and got to do a linear search on 5 rungs, which grabs time complexity of O(n). 
   
   So it's apparent that starting point needs to be dependent on the number of jars.
-	Suppose, for sake of simplicity, if n is a perfect square, then a good approach would be to drop the first jar from heights that are multiples of √n. If we reach the top and jar doesn’t break, we are done to drop jar √n times. 
+	Suppose, for sake of simplicity, if n is a perfect square, then a good approach would be to drop the first jar from heights
+	that are multiples of √n. If we reach the top and jar doesn’t break, we are done to drop jar √n times. 
 	 
    Likewise, if jar breaks at height of m√n , highest safest rung should be between
             (m-1) √n  and m√n . At this point, we shall start dropping the second jar starting from 
@@ -16,8 +17,12 @@
             √n steps.
             
             
-	Therefore, worst case scenario would be highest rung in at most 2√n steps. The efficient method would be to drop the first jar from heights that are multiple of √n. If n isn’t a perfect square, then same strategy can be used though dividing the latter in multiples of √n and still obtaining an algorithm that runs in O(√n) time complexity
-	So , the idea is to  throw the first jar from rung i√n for increasing values of i. So in total we can never do more than f(n)=2√n-1 throws.
+	Therefore, worst case scenario would be highest rung in at most 2√n steps. The efficient method would be to drop the first 
+	jar from heights that are multiple of √n. If n isn’t a perfect square, then same strategy can be used though dividing the latter 
+	in multiples of √n and still obtaining an algorithm that runs in O(√n) time complexity.
+	
+	So , the idea is to  throw the first jar from rung i√n for increasing values of i. So in total we can never do more than
+	f(n)=2√n-1 throws.
 
 	We infer by induction that f_K (n)≤〖2kn〗^(1/k) . 
 	We begin by dropping the first jar from heights that are multiples of [n^(k-1)/k]. 
@@ -26,5 +31,6 @@
 
 
 By induction, we can conclude that , this uses atmost 
-2(k-1)〖(n^((k-1)/k)/k)〗^(1/((k-1)))  = 2(k-1)n^(1/k) drops. By adding in the ≤〖2n〗^(1/k) drops made using the first jar, we get a bound of 〖2kn〗^(1/k) finishing the induction.
+2(k-1)〖(n^((k-1)/k)/k)〗^(1/((k-1)))  = 2(k-1)n^(1/k) drops. By adding in the ≤〖2n〗^(1/k) drops made using the first jar,
+we get a bound of 〖2kn〗^(1/k) finishing the induction.
 
