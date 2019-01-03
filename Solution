@@ -1,0 +1,30 @@
+ The problem can be refined as:   (n,k) <=n     where, 'n' is the number of rungs
+                                                       'k' is the number of jars, such that, k>0
+ First part solution:
+	One attempt is to do a binary search with the first jar, but that’s not efficient as if we drop first sphere from N/2’th floor
+  and it breaks, we need to use linear search using the second jar starting from the 1st rung up- which has worst case of N/2-1.
+  
+	For example, let n=10 and k=2, then a good place to start would be the middle, at rung number 5, and if the jar breaks there, 
+  we have only one jar left and got to do a linear search on 5 rungs, which grabs time complexity of O(n). 
+  
+  So it's apparent that starting point needs to be dependent on the number of jars.
+	Suppose, for sake of simplicity, if n is a perfect square, then a good approach would be to drop the first jar from heights that are multiples of √n. If we reach the top and jar doesn’t break, we are done to drop jar √n times. 
+	 
+   Likewise, if jar breaks at height of m√n , highest safest rung should be between
+            (m-1) √n  and m√n . At this point, we shall start dropping the second jar starting from 
+              ((m- 1)√n + 1)th rung, going up by one rung each time, which would atmost take
+            √n steps.
+            
+            
+	Therefore, worst case scenario would be highest rung in at most 2√n steps. The efficient method would be to drop the first jar from heights that are multiple of √n. If n isn’t a perfect square, then same strategy can be used though dividing the latter in multiples of √n and still obtaining an algorithm that runs in O(√n) time complexity
+	So , the idea is to  throw the first jar from rung i√n for increasing values of i. So in total we can never do more than f(n)=2√n-1 throws.
+
+	We infer by induction that f_K (n)≤〖2kn〗^(1/k) . 
+	We begin by dropping the first jar from heights that are multiples of [n^(k-1)/k]. 
+  So , the first jar can be dropped atmost at 2n/n^((k-1)/k)  =〖2n〗^(1/k) times that reduces the possible rungs down to an 
+  interval of length atmost n^(k-1)/k , then when we apply the strategy for k-1 jars recursively.
+
+
+By induction, we can conclude that , this uses atmost 
+2(k-1)〖(n^((k-1)/k)/k)〗^(1/((k-1)))  = 2(k-1)n^(1/k) drops. By adding in the ≤〖2n〗^(1/k) drops made using the first jar, we get a bound of 〖2kn〗^(1/k) finishing the induction.
+
